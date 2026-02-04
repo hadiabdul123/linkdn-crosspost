@@ -1,14 +1,12 @@
 {
   "name": "twitter-linkedin-crosspost",
   "version": "1.0.0",
-  "description": "Cross-posts Twitter to LinkedIn via Make.com webhook (Vercel serverless)",
+  "description": "Cross-posts Twitter to LinkedIn via Make.com webhook",
+  "main": "twitterapi-watcher-prod.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "start": "node twitterapi-watcher-prod.js"
   },
   "dependencies": {
-    "next": "^14.2.0",
-    "@upstash/redis": "^1.34.0"
+    "node-fetch": "^2.7.0"
   }
 }
