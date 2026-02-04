@@ -1,6 +1,0 @@
-services:
-  - type: worker
-    name: twitter-linkedin-crosspost
-    runtime: node
-    buildCommand: npm install
-    startCommand: node twitterapi-watcher-prod.js
