@@ -1,0 +1,32 @@
+services:
+  # Web service to host the Next.js app
+  - type: web
+    name: twitter-linkedin-crosspost
+    runtime: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: TWITTER_API_KEY
+        sync: false
+      - key: TWITTER_USERNAME
+        sync: false
+      - key: MAKE_WEBHOOK_URL
+        sync: false
+      - key: UPSTASH_REDIS_REST_URL
+        sync: false
+      - key: UPSTASH_REDIS_REST_TOKEN
+        sync: false
+
+  # Cron job to check tweets every 2 hours
+  - type: cron
+    name: check-tweets-cron
+    runtime: node
+    schedule: "0 */2 * * *"
+    buildCommand: npm install
+    startCommand: node scripts/cron-trigger.js
+    envVars:
+      - key: APP_URL
+        fromService:
+          name: twitter-linkedin-crosspost
+          type: web
+          property: host
