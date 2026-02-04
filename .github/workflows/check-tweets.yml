@@ -1,0 +1,29 @@
+name: Check Tweets
+
+on:
+  schedule:
+    # Runs every 2 hours
+    - cron: '0 */2 * * *'
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  check-tweets:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tweet checker
+        env:
+          JSONBIN_BIN_ID: ${{ secrets.JSONBIN_BIN_ID }}
+          JSONBIN_API_KEY: ${{ secrets.JSONBIN_API_KEY }}
+        run: node check-tweets.js

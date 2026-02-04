@@ -1,10 +1,10 @@
 {
   "name": "twitter-linkedin-crosspost",
   "version": "1.0.0",
-  "description": "Cross-posts Twitter to LinkedIn via Make.com webhook",
-  "main": "server.js",
+  "description": "Cross-posts Twitter to LinkedIn via Make.com webhook (GitHub Actions)",
+  "main": "check-tweets.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node check-tweets.js"
   },
   "engines": {
     "node": "18.x"
